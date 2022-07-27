@@ -1,1 +1,1 @@
-# An App for Music Studio Teachers
+# An App for Private Music Teachers
