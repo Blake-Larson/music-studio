@@ -1,10 +1,8 @@
-import data from '../data';
 import Lesson from './Lesson';
 
-export default function Main() {
-	const lesson = data.map(item => {
-		return <Lesson key={item.id} {...item} />;
+export default function Main(props) {
+	const lesson = props.map((item, i) => {
+		return <Lesson key={i} {...item} />;
 	});
-
 	return <main>{lesson}</main>;
 }

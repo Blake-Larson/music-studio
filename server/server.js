@@ -15,43 +15,45 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
 	}
 );
 
-//app.use(express.urlencoded({ extended: true }));
-//app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.get('/api', (req, res) => {
-	res.json({ message: 'Hello from Server! asdasda' });
+app.get('/api', async (req, res) => {
+	const data = await db.collection('music-studio').find().toArray();
+	res.json(data);
 });
 
-// app.get('/', async (request, response) => {
-// 	const todoItems = await db.collection('todos').find().toArray();
-// 	const itemsLeft = await db
-// 		.collection('todos')
-// 		.countDocuments({ completed: false });
-// 	response.render('index.ejs', { items: todoItems, left: itemsLeft });
-// 	// db.collection('todos').find().toArray()
-// 	// .then(data => {
-// 	//     db.collection('todos').countDocuments({completed: false})
-// 	//     .then(itemsLeft => {
-// 	//         response.render('index.ejs', { items: data, left: itemsLeft })
-// 	//     })
-// 	// })
-// 	// .catch(error => console.error(error))
+app.post('/newStudent', (req, res) => {
+	db.collection('music-studio')
+		.insertOne({ student: req.body })
+		.then(result => {
+			console.log(`New Student: ${req.body.name} Added`);
+			res.json(`New Student: ${req.body.name} Added`);
+		})
+		.catch(error => console.error(error));
+});
+
+// app.get('/', async (req, res) => {
+
+// const todoItems = await db.collection('music-studio').find().toArray();
+// const itemsLeft = await db
+// 	.collection('music-studio')
+// 	.countDocuments({ completed: false });
+// res.render('index.ejs', { items: todoItems, left: itemsLeft });
+// db.collection('music-studio').find().toArray()
+// .then(data => {
+//     db.collection('music-studio').countDocuments({completed: false})
+//     .then(itemsLeft => {
+//         res.render('index.ejs', { items: data, left: itemsLeft })
+//     })
+// })
+// .catch(error => console.error(error))
 // });
 
-// app.post('/addTodo', (request, response) => {
-// 	db.collection('todos')
-// 		.insertOne({ thing: request.body.todoItem, completed: false })
-// 		.then(result => {
-// 			console.log('Todo Added');
-// 			response.redirect('/');
-// 		})
-// 		.catch(error => console.error(error));
-// });
-
-// app.put('/markComplete', (request, response) => {
-// 	db.collection('todos')
+// app.put('/markComplete', (req, res) => {
+// 	db.collection('music-studio')
 // 		.updateOne(
-// 			{ thing: request.body.itemFromJS },
+// 			{ thing: req.body.itemFromJS },
 // 			{
 // 				$set: {
 // 					completed: true,
@@ -64,15 +66,15 @@ app.get('/api', (req, res) => {
 // 		)
 // 		.then(result => {
 // 			console.log('Marked Complete');
-// 			response.json('Marked Complete');
+// 			res.json('Marked Complete');
 // 		})
 // 		.catch(error => console.error(error));
 // });
 
-// app.put('/markUnComplete', (request, response) => {
-// 	db.collection('todos')
+// app.put('/markUnComplete', (req, res) => {
+// 	db.collection('music-studio')
 // 		.updateOne(
-// 			{ thing: request.body.itemFromJS },
+// 			{ thing: req.body.itemFromJS },
 // 			{
 // 				$set: {
 // 					completed: false,
@@ -85,17 +87,17 @@ app.get('/api', (req, res) => {
 // 		)
 // 		.then(result => {
 // 			console.log('Marked Complete');
-// 			response.json('Marked Complete');
+// 			res.json('Marked Complete');
 // 		})
 // 		.catch(error => console.error(error));
 // });
 
-// app.delete('/deleteItem', (request, response) => {
-// 	db.collection('todos')
-// 		.deleteOne({ thing: request.body.itemFromJS })
+// app.delete('/deleteItem', (req, res) => {
+// 	db.collection('music-studio')
+// 		.deleteOne({ thing: req.body.itemFromJS })
 // 		.then(result => {
 // 			console.log('Todo Deleted');
-// 			response.json('Todo Deleted');
+// 			res.json('Todo Deleted');
 // 		})
 // 		.catch(error => console.error(error));
 // });

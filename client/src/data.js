@@ -4,7 +4,7 @@ const data = [
 		date: '05/06/22',
 		time: '10:00 AM - 10:30 AM',
 		day: 'Monday',
-		student: 'Jeremy Padrones',
+		name: 'Jeremy Padrones',
 		repertoire: ['Let it Go', 'Into the Unkown', 'All is Found'],
 		concepts: ['Sing it girl!', 'Or is it known?', 'Rhythm in m.22'],
 	},
@@ -13,14 +13,14 @@ const data = [
 		date: '05/06/22',
 		time: '10:30 AM - 11:00 AM',
 		day: 'Monday',
-		student: 'Hollyann Larson',
+		name: 'Hollyann Larson',
 	},
 	{
 		id: 2,
 		date: '05/06/22',
 		time: '11:00 AM - 11:30 AM',
 		day: 'Monday',
-		student: 'Julie Patterson',
+		name: 'Julie Patterson',
 	},
 ];
 
