@@ -1,8 +1,13 @@
-import Lesson from './Lesson';
+//import Lesson from './Lesson';
 
 export default function Main(props) {
-	const lesson = props.map((item, i) => {
-		return <Lesson key={i} {...item} />;
+	console.log(props.data.students);
+	const studentList = props.data.students.map((item, i) => {
+		return (
+			<div key={i}>
+				<p>{item.name}</p>
+			</div>
+		);
 	});
-	return <main>{lesson}</main>;
+	return <main>{studentList}</main>;
 }

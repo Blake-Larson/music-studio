@@ -2,28 +2,16 @@ import React from 'react';
 import CheckInForm from './CheckInForm';
 
 export default function Lesson(props) {
-	// const [data, setData] = React.useState(null);
+	const students = props.data.map((item, i) => {
+		return <li key={i}>{item.student.name}</li>;
+	});
+	const repertoire = props.data.map((item, i) => {
+		return <li key={i}>{item.repertoire}</li>;
+	});
+	const concepts = props.data.map((item, i) => {
+		return <li key={i}>{item.concepts}</li>;
+	});
 
-	// React.useEffect(() => {
-	// 	console.log('Fetched API');
-	// 	fetch('/api')
-	// 		.then(res => res.json())
-	// 		.then(data => setData(data));
-	// }, []);
-	// console.log(data);
-	let repertoire;
-	let concepts;
-	function mapItems() {
-		if (props) {
-			repertoire = props.map((item, i) => {
-				return <li key={i}>{item.repertoire}</li>;
-			});
-			concepts = props.map((item, i) => {
-				return <li key={i}>{item.concepts}</li>;
-			});
-		}
-	}
-	mapItems();
 	return (
 		<div className='collapse collapse-arrow border border-base-300 bg-base-100 rounded-box'>
 			<input type='checkbox' />
